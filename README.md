@@ -3,12 +3,24 @@ silex-mongo-provider
 
 [![Build Status](https://travis-ci.org/moriony/silex-mongo-provider.png?branch=master)](https://travis-ci.org/moriony/silex-mongo-provider)
 
-[Mongo](mongodb.org/) service provider for the [Silex](silex.sensiolabs.org/) framwork.
+[Mongo](http://mongodb.org/) service provider for the [Silex](http://silex.sensiolabs.org/) framwork.
 
-Examples
-===
+## Install via composer
+
+Add in your ```composer.json``` the require entry for this library.
+```json
+{
+    "require": {
+        "moriony/silex-mongo-provider": "*"
+    }
+}
+```
+and run ```composer install``` (or ```update```) to download all files.
+
+## Usage
+
+### Service registration
 ```php
-// Service declaration
 $this->app->register(new MongoServiceProvider, array(
     'mongo.connections' => array(
         'default' => array(
@@ -17,14 +29,16 @@ $this->app->register(new MongoServiceProvider, array(
         )
     ),
 ));
+```
 
- // Retrive connection provider
+###  Connections retrieving
+```php
 $connections = $app['mongo'];
-
-// Retrive connection
 $defaultConnection = $connections['default']; 
+```
 
-// Create connection via factory
+###  Creating mongo connection via factory
+```php
 $mongoFactory = $app['mongo.factory'];
 $customConnection = $mongoFactory("mongodb://localhost:27017", array("connect" => true));
 ```
