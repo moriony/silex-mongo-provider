@@ -4,6 +4,7 @@ php:
   - "5.3"
 
 before_install:
+  - curl -s https://getcomposer.org/installer | php
   - php composer.phar install
 
 notifications:
