@@ -1,7 +1,4 @@
-silex-mongo-provider
-====================
-
-[![Build Status](https://travis-ci.org/moriony/silex-mongo-provider.png?branch=master)](https://travis-ci.org/moriony/silex-mongo-provider)
+# silex-mongo-provider <sup>[![Build Status](https://travis-ci.org/moriony/silex-mongo-provider.png?branch=master)](https://travis-ci.org/moriony/silex-mongo-provider)</sup>
 
 [Mongo](http://mongodb.org/) service provider for the [Silex](http://silex.sensiolabs.org/) framwork.
 
