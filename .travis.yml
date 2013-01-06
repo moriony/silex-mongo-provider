@@ -4,8 +4,9 @@ php:
   - "5.3"
 
 before_install:
-  - curl -s https://getcomposer.org/installer | php
-  - php composer.phar install
+  - pecl -q install mongo
+  - echo "extension=mongo.so" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
+  - composer install
 
 notifications:
   email: "demateus@gmail.com"
