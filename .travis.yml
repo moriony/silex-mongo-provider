@@ -1,11 +1,13 @@
 language: php
 php:
-  - 5.5
-  - 5.4
   - 5.3
+  - 5.4
+  - 5.5
+
 
 before_install:
-  - echo "extension = mongo.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+  - pecl -q install mongo
+  - echo "extension=mongo.so" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
   - composer install --dev --prefer-source
 
 after_script:
