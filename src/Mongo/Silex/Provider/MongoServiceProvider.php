@@ -28,13 +28,7 @@ class MongoServiceProvider implements ServiceProviderInterface
         });
 
         $app['mongo'] = $app->share(function () use($app) {
-            $connections = new MongoConnectionsProvider();
-            foreach($app['mongo.connections'] as $key => $options) {
-                $connections[$key] = $connections->share(function() use($options) {
-                    return new \Mongo($options['server'], $options['options']);
-                });
-            }
-            return $connections;
+            return new MongoConnectionProvider($app['mongo.connections']);
         });
     }
 

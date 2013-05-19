@@ -27,7 +27,7 @@ class MongoServiceProviderTest extends \PHPUnit_Framework_TestCase
 
     public function testServiceDeclaration()
     {
-        $this->assertInstanceOf('Mongo\Silex\Provider\MongoConnectionsProvider', $this->app['mongo']);
+        $this->assertInstanceOf('Mongo\Silex\Provider\MongoConnectionProvider', $this->app['mongo']);
     }
 
     public function testConnectionProvider()
