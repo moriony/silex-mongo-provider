@@ -19,7 +19,7 @@ and run ```composer install``` (or ```update```) to download all files.
 
 ### Service registration
 ```php
-$this->app->register(new MongoServiceProvider, array(
+$app->register(new MongoServiceProvider, array(
     'mongo.connections' => array(
         'default' => array(
             'server' => "mongodb://localhost:27017",
