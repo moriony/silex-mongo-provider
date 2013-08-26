@@ -10,7 +10,7 @@ class MongoConnectionProvider extends \Pimple
     {
         foreach($options as $key => $connection) {
             $this[$key] = $this->share(function() use($connection) {
-                return new \Mongo($connection['server'], $connection['options']);
+                return new \MongoClient($connection['server'], $connection['options']);
             });
         }
     }

@@ -32,7 +32,7 @@ class MongoServiceProviderTest extends \PHPUnit_Framework_TestCase
 
     public function testConnectionProvider()
     {
-        $this->assertInstanceOf('Mongo', $this->app['mongo']['default']);
+        $this->assertInstanceOf('MongoClient', $this->app['mongo']['default']);
     }
 
     public function testFactory()
