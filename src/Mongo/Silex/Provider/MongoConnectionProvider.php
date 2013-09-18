@@ -8,9 +8,11 @@ class MongoConnectionProvider extends \Pimple
      */
     public function __construct(array $options)
     {
+        
         foreach($options as $key => $connection) {
             $this[$key] = $this->share(function() use($connection) {
-                return new \MongoClient($connection['server'], $connection['options']);
+                $mongoClass = (version_compare(phpversion('mongo'), '1.3.0', '<')) ? '\Mongo' : '\MongoClient';
+                return new $mongoClass($connection['server'], $connection['options']);
             });
         }
     }
