@@ -24,7 +24,8 @@ class MongoServiceProvider implements ServiceProviderInterface
         );
 
         $app['mongo.factory'] = $app->protect(function ($server = "mongodb://localhost:27017", array $options = array("connect" => true)) use ($app) {
-            return new \Mongo($server, $options);
+            $mongoClass = (version_compare(phpversion('mongo'), '1.3.0', '<')) ? '\Mongo' : '\MongoClient';
+            return new $mongoClass($server, $options);
         });
 
         $app['mongo'] = $app->share(function () use($app) {
