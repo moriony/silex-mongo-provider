@@ -11,7 +11,7 @@ class MongoConnectionProvider extends \Pimple
         $provider = $this;
         foreach($options as $key => $connection) {
             $this[$key] = $this->share(function() use($connection, $provider) {
-                return $this->createConnection($connection['server'], $connection['options']);
+                return $provider->createConnection($connection['server'], $connection['options']);
             });
         }
     }
