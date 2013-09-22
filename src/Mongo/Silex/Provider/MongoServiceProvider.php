@@ -6,6 +6,10 @@ use Silex\ServiceProviderInterface;
 
 class MongoServiceProvider implements ServiceProviderInterface
 {
+    const MONGO = 'mongo';
+    const MONGO_CONNECTIONS = 'mongo.connections';
+    const MONGO_FACTORY = 'mongo.factory';
+
     /**
      * Registers services on the given app.
      *
@@ -16,20 +20,19 @@ class MongoServiceProvider implements ServiceProviderInterface
      */
     public function register(Application $app)
     {
-        $app['mongo.connections'] = array(
+        $app[self::MONGO_CONNECTIONS] = array(
             'default' => array(
                 'server' => "mongodb://localhost:27017",
                 'options' => array("connect" => true)
             )
         );
 
-        $app['mongo.factory'] = $app->protect(function ($server = "mongodb://localhost:27017", array $options = array("connect" => true)) use ($app) {
-            $mongoClass = (version_compare(phpversion('mongo'), '1.3.0', '<')) ? '\Mongo' : '\MongoClient';
-            return new $mongoClass($server, $options);
+        $app[self::MONGO_FACTORY] = $app->protect(function ($server = "mongodb://localhost:27017", array $options = array("connect" => true)) use ($app) {
+            return $app[MongoServiceProvider::MONGO]->createConnection($server, $options);
         });
 
-        $app['mongo'] = $app->share(function () use($app) {
-            return new MongoConnectionProvider($app['mongo.connections']);
+        $app[self::MONGO] = $app->share(function () use($app) {
+            return new MongoConnectionProvider($app[MongoServiceProvider::MONGO_CONNECTIONS]);
         });
     }
 
