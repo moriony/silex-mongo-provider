@@ -12,6 +12,8 @@ class MongoServiceProviderTest extends \PHPUnit_Framework_TestCase
      */
     protected $app;
 
+    protected $mongoClass;
+
     public function setUp()
     {
         $this->app = new Application();
@@ -23,6 +25,7 @@ class MongoServiceProviderTest extends \PHPUnit_Framework_TestCase
                 )
             ),
         ));
+        $this->mongoClass = (version_compare(phpversion('mongo'), '1.3.0', '<')) ? '\Mongo' : '\MongoClient';
     }
 
     public function testServiceDeclaration()
@@ -32,13 +35,13 @@ class MongoServiceProviderTest extends \PHPUnit_Framework_TestCase
 
     public function testConnectionProvider()
     {
-        $this->assertInstanceOf('MongoClient', $this->app['mongo']['default']);
+        $this->assertInstanceOf($this->mongoClass, $this->app['mongo']['default']);
     }
 
     public function testFactory()
     {
         $factory = $this->app['mongo.factory'];
         $connection = $factory("mongodb://localhost:27017", array("connect" => false));
-        $this->assertInstanceOf('Mongo', $connection);
+        $this->assertInstanceOf($this->mongoClass, $connection);
     }
 }
