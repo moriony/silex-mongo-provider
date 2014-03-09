@@ -12,12 +12,10 @@
         }
     ],
     "require": {
-        "pimple/pimple": "1.*",
+        "pimple/pimple": "*",
         "silex/silex": "1.*"
     },
     "require-dev": {
-        "pimple/pimple": "1.*",
-        "silex/silex": "1.*",
         "satooshi/php-coveralls": "*",
         "phpunit/phpunit": "3.7.*"
     },
