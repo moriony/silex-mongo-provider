@@ -1,5 +1,5 @@
 {
-    "name": "moriony/silex-mongo-provider",
+    "name": "theluckyone/silex-mongo-provider",
     "type": "library",
     "description":  "Mongo service provider for the Silex framwork.",
     "keywords": ["mongodb", "database", "mongo", "silex"],
