@@ -25,7 +25,7 @@ class MongoConnectionProvider extends \Pimple
     {
         $mongoVersion = phpversion('mongo');
         if ($mongoVersion === false && phpversion('mongoDB')) {
-            $mongoClass = '\MongoDB\Client';
+            $mongoClass = '\MongoDB\Driver\Manager';
         } else {
             $mongoClass = (version_compare(phpversion('mongo'), '1.3.0', '<')) ? '\MongoDB\Client' : '\MongoClient';
         }
