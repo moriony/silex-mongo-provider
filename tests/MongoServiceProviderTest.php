@@ -25,7 +25,12 @@ class MongoServiceProviderTest extends \PHPUnit_Framework_TestCase
                 )
             ),
         ));
-        $this->mongoClass = (version_compare(phpversion('mongo'), '1.3.0', '<')) ? '\Mongo' : '\MongoClient';
+        $mongoVersion = phpversion('mongo');
+        if ($mongoVersion === false && phpversion('mongoDB')) {
+            $this->mongoClass = '\MongoDB\Driver\Manager';
+        } else {
+            $this->mongoClass = (version_compare(phpversion('mongo'), '1.3.0', '<')) ? '\MongoDB\Client' : '\MongoClient';
+        }
     }
 
     public function testServiceDeclaration()
