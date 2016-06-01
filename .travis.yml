@@ -3,6 +3,7 @@ php:
   - 5.3
   - 5.4
   - 5.5
+  - 7.0
 
 before_install:
   - echo "extension=mongo.so" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
@@ -12,4 +13,4 @@ after_script:
   - php vendor/bin/coveralls
 
 notifications:
-  email: "demateus@gmail.com"
+  email: "killthesound@yandex.ru"
