@@ -9,8 +9,8 @@ class MongoConnectionProvider extends \Pimple
     public function __construct(array $options)
     {
         $provider = $this;
-        foreach($options as $key => $connection) {
-            $this[$key] = $this->share(function() use($connection, $provider) {
+        foreach ($options as $key => $connection) {
+            $this[$key] = $this->share(function () use ($connection, $provider) {
                 return $provider->createConnection($connection['server'], $connection['options']);
             });
         }
@@ -23,8 +23,12 @@ class MongoConnectionProvider extends \Pimple
      */
     public function createConnection($server = "mongodb://localhost:27017", array $options = array("connect" => true))
     {
-        $mongoClass = '\MongoDB\Client';
-        
+        $mongoVersion = phpversion('mongo');
+        if ($mongoVersion === false && phpversion('mongoDB')) {
+            $mongoClass = '\MongoDB\Client';
+        } else {
+            $mongoClass = (version_compare(phpversion('mongo'), '1.3.0', '<')) ? '\MongoDB\Client' : '\MongoClient';
+        }
         return new $mongoClass($server, $options);
     }
 }
