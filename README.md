@@ -1,5 +1,5 @@
 # silex-mongo-provider
-[![Build Status](https://travis-ci.org/moriony/silex-mongo-provider.png?branch=master)](https://travis-ci.org/moriony/silex-mongo-provider) [![Coverage Status](https://coveralls.io/repos/moriony/silex-mongo-provider/badge.png?branch=master)](https://coveralls.io/r/moriony/silex-mongo-provider?branch=master) [![Dependency Status](https://www.versioneye.com/user/projects/51980354e6cb9b000200b188/badge.png)](https://www.versioneye.com/user/projects/51980354e6cb9b000200b188)
+[![Build Status](https://travis-ci.org/moriony/silex-mongo-provider.png?branch=master)](https://travis-ci.org/moriony/silex-mongo-provider) [![Coverage Status](https://coveralls.io/repos/github/TheLuckyOne/silex-mongo-provider/badge.svg?branch=master)](https://coveralls.io/github/TheLuckyOne/silex-mongo-provider?branch=master) [![Dependency Status](https://www.versioneye.com/user/projects/51980354e6cb9b000200b188/badge.png)](https://www.versioneye.com/user/projects/51980354e6cb9b000200b188)
 
 [Mongo](http://mongodb.org/) service provider for the [Silex](http://silex.sensiolabs.org/) framework.
 Tested this PHP7 & last MongoDB driver.
